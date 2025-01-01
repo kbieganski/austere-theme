@@ -1,0 +1,9 @@
+[color "diff"]
+    oldMoved = yellow
+    newMoved = blue
+
+[delta]
+    syntax-theme = austere-theme
+    plus-style = syntax "#1e4726"
+    minus-style = syntax "#471e24"
+    map-styles = yellow => syntax "#473e1e", blue => syntax "#252a47"

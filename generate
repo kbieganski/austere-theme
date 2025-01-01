@@ -1,0 +1,98 @@
+#!/bin/env -S pipx run
+# vim: set ft=python:
+# /// script
+# requires-python = ">=3.10"
+# dependencies = [
+#   "jinja2",
+#   "spectra",
+# ]
+# ///
+from jinja2 import Template, StrictUndefined
+import spectra
+import os
+
+
+class Scale:
+    def __init__(self, start, end=None):
+        if not end:
+            self.start = spectra.html('#000000')
+            self.end = spectra.html(start)
+        else:
+            self.start = spectra.html(start)
+            self.end = spectra.html(end)
+
+    def named_scale(self, *names):
+        assert len(names) > 1
+        return {name: self[i/(len(names)-1)] for i, name in enumerate(names)}
+
+    def __getitem__(self, ratio):
+        if isinstance(ratio, slice):
+            start = self[ratio.start] if ratio.start else self.start.hexcode
+            end = self[ratio.stop] if ratio.stop else self.end.hexcode
+            return Scale(start, end)
+        ratio = min(1, max(0, ratio))
+        return self.start.blend(self.end, ratio).hexcode
+
+
+base = Scale('#FFFFFF')
+bg = base[:0.2]
+fg = base[0.32:]
+red = Scale('#FF6B81')[1/5:]
+green = Scale('#6BFF88')[1/5:]
+blue = Scale('#8398FF')[1/5:]
+yellow = Scale('#FFDB6B')[1/5:]
+
+bg = bg.named_scale('inactive', 'active', 'cursorline', 'highlight')
+fg = fg.named_scale('virtual', 'comment', 'operator', 'preproc',
+                    'type', 'constant', 'identifier', 'normal', 'keyword')
+fg.update({
+    'inverted': bg['active'],
+    'status': base[2/3],
+    'add': green[0.2:],
+    'delete': red[0.2:],
+    'change': yellow[0.2:],
+    'error': red[1],
+    'warn': yellow[1],
+    'info': blue[1],
+    'ok': blue[1],
+    'hint': blue[1],
+})
+bg.update({
+    'inverted': fg['normal'],
+    'add': green[:0.1],
+    'delete': red[:0.1],
+    'change': yellow[:0.1],
+    'moved_old': yellow[0.1],
+    'moved_new': blue[0.1],
+    'current': red[0.1:0.2],
+    'ancestor': yellow[0.1:0.2],
+    'incoming': green[0.1:0.2],
+    'select': blue[0.1],
+    'search': blue[0.5],
+    'cursor': blue[1],
+    'urgent': blue[1],
+})
+
+
+class DictObj:
+    def __init__(self, **kwargs):
+        for k, v in kwargs.items():
+            setattr(self, k, v)
+
+
+if __name__ == '__main__':
+    this_path = os.path.dirname(__file__)
+    for file in os.listdir(f'{this_path}/templates'):
+        if not file.endswith('.jinja'):
+            continue
+        name = file[:-len('.jinja')]
+        with open(f'{this_path}/templates/{file}') as file:
+            template = Template(file.read(), undefined=StrictUndefined)
+        with open(f'{this_path}/{name}', 'w') as file:
+            file.write(template.render(base=base,
+                                       red=red,
+                                       green=green,
+                                       blue=blue,
+                                       yellow=yellow,
+                                       bg=DictObj(**bg),
+                                       fg=DictObj(**fg)))

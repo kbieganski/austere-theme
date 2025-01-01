@@ -1,0 +1,15 @@
+--inside-color=#000000ff \
+--ring-color=#e9e9e9ff \
+--insidever-color=#111111ff \
+--ringver-color=#6bff88ff \
+--insidewrong-color=#111111ff \
+--ringwrong-color=#ff6b81ff \
+--line-color=00000000 \
+--keyhl-color=#8398ffff \
+--bshl-color=#ff6b81ff \
+--separator-color=00000000 \
+--verif-color=#6bff88ff \
+--wrong-color=#ff6b81ff \
+--modif-color=#8398ffff \
+--time-color=#e9e9e9ff \
+--date-color=#e9e9e9ff \

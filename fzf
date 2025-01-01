@@ -1,0 +1,15 @@
+--color=fg:#e9e9e9
+--color=fg+:#e9e9e9
+--color=bg:-1
+--color=bg+:#333333
+--color=hl:#8398ff
+--color=hl+:#8398ff
+--color=info:#aaaaaa
+--color=marker:#e9e9e9
+--color=prompt:#e9e9e9
+--color=spinner:#e9e9e9
+--color=pointer:#8398ff
+--color=header:#aaaaaa
+--color=border:#e9e9e9
+--color=label:#e9e9e9
+--color=query:#e9e9e9

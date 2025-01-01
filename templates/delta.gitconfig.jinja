@@ -1,0 +1,9 @@
+[color "diff"]
+    oldMoved = yellow
+    newMoved = blue
+
+[delta]
+    syntax-theme = austere-theme
+    plus-style = syntax "{{ bg.add[1] }}"
+    minus-style = syntax "{{ bg.delete[1] }}"
+    map-styles = yellow => syntax "{{ bg.moved_old }}", blue => syntax "{{ bg.moved_new }}"

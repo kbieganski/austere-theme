@@ -1,0 +1,18 @@
+set $background  {{ bg.active }}ff
+set $foreground  {{ fg.normal }}
+set $focused_bg  {{ bg.inverted }}ff
+set $focused_fg  {{ fg.inverted }}
+set $active_bg   {{ bg.active }}ff
+set $active_fg   {{ fg.normal }}
+set $inactive_bg {{ bg.inactive }}ff
+set $inactive_fg {{ fg.status }}
+set $urgent_bg   {{ bg.urgent }}
+set $urgent_fg   {{ fg.normal }}
+
+client.focused          $focused_bg   $focused_bg   $focused_fg   $focused_bg   $focused_bg
+client.focused_inactive $active_bg    $active_bg    $active_fg    $active_bg    $active_bg
+client.unfocused        $inactive_bg  $inactive_bg  $inactive_fg  $inactive_bg  $inactive_bg
+client.urgent           $urgent_bg    $urgent_bg    $urgent_fg    $urgent_bg    $urgent_bg
+client.placeholder      $background   $background   $foreground   $background   $background
+client.background       $background
+

@@ -1,0 +1,21 @@
+* {
+    background:       {{ bg.active }};
+    selected:         {{ bg.highlight }};
+    background-color: rgba(0, 0, 0, 0%);
+    text-color:       {{ fg.normal }};
+}
+window {
+    background-color: @background;
+    border: 1px;
+    border-color:     @text-color;
+}
+element selected {
+    background-color: @selected;
+}
+selected {
+    background-color: @selected;
+}
+scrollbar {
+    background-color: {{ bg.inactive }};
+    handle-color:     @text-color;
+}

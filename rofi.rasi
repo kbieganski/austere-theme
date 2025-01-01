@@ -1,0 +1,21 @@
+* {
+    background:       #111111;
+    selected:         #333333;
+    background-color: rgba(0, 0, 0, 0%);
+    text-color:       #e9e9e9;
+}
+window {
+    background-color: @background;
+    border: 1px;
+    border-color:     @text-color;
+}
+element selected {
+    background-color: @selected;
+}
+selected {
+    background-color: @selected;
+}
+scrollbar {
+    background-color: #000000;
+    handle-color:     @text-color;
+}
