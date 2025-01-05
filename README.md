@@ -14,6 +14,6 @@ Available for:
 * fzf
 * i3, i3bar, i3lock-color
 * kitty
-* Neovim
+* Neovim (see [austere-theme.nvim](https://github.com/kbieganski/austere-theme.nvim))
 * Rofi
 * tmux
